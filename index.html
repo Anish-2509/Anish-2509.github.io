@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join My Celebration!</title>
+    <style>
+        :root {
+            --primary-color: #3a7bd5;
+            --accent-color: #9370DB;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4ecfb 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            font-weight: 300;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid #eaeaea;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        
+        .details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .detail-item {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .detail-label {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .detail-value {
+            font-size: 1.1rem;
+        }
+        
+        .celebration-reason {
+            font-style: italic;
+            font-size: 1.15rem;
+            text-align: center;
+            margin: 20px 0;
+            color: var(--accent-color);
+        }
+        
+        .rsvp-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        label {
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        input, textarea, select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        
+        button {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent-color);
+            animation: fall 3s linear infinite;
+            opacity: 0.7;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Let's Celebrate!</h1>
+            <div class="subtitle">Join me for a party to celebrate my new appointment</div>
+        </header>
+        
+        <div class="card">
+            <h2>The Occasion</h2>
+            <p class="celebration-reason">I'm thrilled to announce my appointment as [Your New Position]!</p>
+            <p>After [brief background about your journey], I'm excited to share this milestone with friends, family, and colleagues who have supported me along the way.</p>
+            <p>Please join me for an evening of celebration, good food, and great company!</p>
+        </div>
+        
+        <div class="card">
+            <h2>Event Details</h2>
+            <div class="details">
+                <div class="detail-item">
+                    <span class="detail-label">Date</span>
+                    <div class="detail-value">Saturday, June 7, 2025</div>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Time</span>
+                    <div class="detail-value">7:00 PM - 11:00 PM</div>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Location</span>
+                    <div class="detail-value">The Garden Terrace<br>123 Celebration Avenue<br>Cityville</div>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Dress Code</span>
+                    <div class="detail-value">Semi-formal / Business Casual</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>RSVP</h2>
+            <p>Please let me know if you can make it by May 25th</p>
+            <form class="rsvp-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="attendance">Will you be attending?</label>
+                    <select id="attendance" required>
+                        <option value="">--Please select--</option>
+                        <option value="yes">Yes, I'll be there!</option>
+                        <option value="no">Sorry, I can't make it</option>
+                        <option value="maybe">Maybe, I'll confirm later</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="guests">Number of guests (including yourself)</label>
+                    <input type="number" id="guests" min="1" max="5" value="1">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message (optional)</label>
+                    <textarea id="message" rows="3"></textarea>
+                </div>
+                <button type="submit">Submit RSVP</button>
+            </form>
+        </div>
+        
+        <div class="card">
+            <h2>Additional Information</h2>
+            <p><strong>Parking:</strong> Free parking is available on-site</p>
+            <p><strong>Food & Drinks:</strong> Dinner and refreshments will be provided</p>
+            <p><strong>Questions?</strong> Contact me at [your email] or [your phone number]</p>
+        </div>
+        
+        <footer>
+            Looking forward to celebrating with you!
+        </footer>
+    </div>
+    
+    <script>
+        // Create confetti effect
+        function createConfetti() {
+            const colors = ['#3a7bd5', '#9370DB', '#FF69B4', '#FFD700', '#00CED1'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 12 + 5 + 'px';
+                confetti.style.height = Math.random() * 12 + 5 + 'px';
+                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(confetti);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+            
+            setTimeout(createConfetti, 3000);
+        }
+        
+        // Start confetti when the page loads
+        window.addEventListener('load', createConfetti);
+        
+        // Form submission (prevents page reload)
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your RSVP! We look forward to celebrating with you.');
+        });
+    </script>
+</body>
+</html>
