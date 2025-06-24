@@ -3,287 +3,327 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join My Celebration!</title>
+    <title>Minimal Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                fontFamily: {
+                    sans: ['Inter', 'system-ui', 'sans-serif'],
+                    mono: ['IBM Plex Mono', 'monospace']
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --primary-color: #3a7bd5;
-            --accent-color: #9370DB;
-            --light-color: #f8f9fa;
-            --dark-color: #343a40;
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap');
+        
+        html {
+            scroll-behavior: smooth;
         }
         
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--dark-color);
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4ecfb 100%);
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
         }
         
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        header {
-            text-align: center;
-            padding: 30px 0;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
-            color: white;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        .note-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
         }
         
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+        .blog-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
         }
         
-        .subtitle {
-            font-size: 1.3rem;
-            font-weight: 300;
+        .theme-toggle {
+            transition: all 0.3s ease;
         }
         
-        .card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        .theme-toggle:hover {
+            transform: rotate(15deg);
         }
         
-        h2 {
-            color: var(--primary-color);
-            border-bottom: 2px solid #eaeaea;
-            padding-bottom: 10px;
-            margin-top: 0;
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #888, transparent);
         }
         
-        .details {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
+        .dark .section-divider {
+            background: linear-gradient(90deg, transparent, #444, transparent);
         }
         
-        .detail-item {
-            flex: 1;
-            min-width: 200px;
+        .content-transition {
+            transition: opacity 0.3s ease;
         }
         
-        .detail-label {
-            font-weight: bold;
-            color: var(--accent-color);
-            margin-bottom: 5px;
-            display: block;
+        .active-tab {
+            border-bottom: 2px solid #4f46e5;
         }
         
-        .detail-value {
-            font-size: 1.1rem;
-        }
-        
-        .celebration-reason {
-            font-style: italic;
-            font-size: 1.15rem;
-            text-align: center;
-            margin: 20px 0;
-            color: var(--accent-color);
-        }
-        
-        .rsvp-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        label {
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
-        
-        input, textarea, select {
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: inherit;
-        }
-        
-        button {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            font-weight: bold;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-        }
-        
-        .confetti {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: var(--accent-color);
-            animation: fall 3s linear infinite;
-            opacity: 0.7;
-        }
-        
-        @keyframes fall {
-            0% {
-                transform: translateY(-100px) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-        
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            color: #6c757d;
-            font-size: 0.9rem;
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .subtitle {
-                font-size: 1.1rem;
-            }
+        .dark .active-tab {
+            border-bottom: 2px solid #818cf8;
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Let's Celebrate!</h1>
-            <div class="subtitle">Join me for a party to celebrate my new appointment</div>
-        </header>
-        
-        <div class="card">
-            <h2>The Occasion</h2>
-            <p class="celebration-reason">I'm thrilled to announce my appointment as [Your New Position]!</p>
-            <p>After [brief background about your journey], I'm excited to share this milestone with friends, family, and colleagues who have supported me along the way.</p>
-            <p>Please join me for an evening of celebration, good food, and great company!</p>
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+    <!-- Header -->
+    <header class="container mx-auto px-4 py-8">
+        <div class="flex justify-between items-center">
+            <div>
+                <h1 class="text-3xl md:text-4xl font-mono font-semibold">Anish Sopariwala</h1>
+                <p class="text-gray-600 dark:text-gray-400 font-mono mt-1">Developer & Designer</p>
+            </div>
+            <button id="theme-toggle" class="theme-toggle p-2 rounded-full bg-gray-100 dark:bg-gray-800">
+                <i class="fas fa-moon dark:hidden"></i>
+                <i class="fas fa-sun hidden dark:block"></i>
+            </button>
         </div>
-        
-        <div class="card">
-            <h2>Event Details</h2>
-            <div class="details">
-                <div class="detail-item">
-                    <span class="detail-label">Date</span>
-                    <div class="detail-value">Saturday, June 7, 2025</div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 pb-20">
+        <!-- Intro Section -->
+        <section class="mb-16 fade-in">
+            <div class="max-w-2xl">
+                <p class="text-lg md:text-xl mb-6 font-mono">
+                    Hello! I'm a developer passionate about creating clean, efficient solutions. 
+                    I focus on web technologies and user experience design.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#" class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-md font-mono hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        View Projects
+                    </a>
+                    <a href="#" class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md font-mono hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                        Contact Me
+                    </a>
                 </div>
-                <div class="detail-item">
-                    <span class="detail-label">Time</span>
-                    <div class="detail-value">7:00 PM - 11:00 PM</div>
+            </div>
+        </section>
+
+        <div class="section-divider my-12"></div>
+
+        <!-- Notes Section -->
+        <section class="mb-16 fade-in">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-mono font-semibold">Notes</h2>
+                <div class="flex space-x-2">
+                    <button id="all-notes" class="active-tab px-3 py-1 text-sm font-mono">All</button>
+                    <button id="tech-notes" class="px-3 py-1 text-sm font-mono">Tech</button>
+                    <button id="design-notes" class="px-3 py-1 text-sm font-mono">Design</button>
                 </div>
-                <div class="detail-item">
-                    <span class="detail-label">Location</span>
-                    <div class="detail-value">The Garden Terrace<br>123 Celebration Avenue<br>Cityville</div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Note Cards -->
+                <div class="note-card bg-white dark:bg-gray-800 rounded-lg p-5 shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="text-xs font-mono text-gray-500 dark:text-gray-400">Tech</span>
+                        <span class="text-xs font-mono text-gray-500 dark:text-gray-400">May 12</span>
+                    </div>
+                    <p class="font-mono text-sm">
+                        Exploring the potential of WebAssembly for frontend tooling. The performance gains are significant, but DX needs improvement.
+                    </p>
                 </div>
-                <div class="detail-item">
-                    <span class="detail-label">Dress Code</span>
-                    <div class="detail-value">Semi-formal / Business Casual</div>
+                
+                <div class="note-card bg-white dark:bg-gray-800 rounded-lg p-5 shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="text-xs font-mono text-gray-500 dark:text-gray-400">Design</span>
+                        <span class="text-xs font-mono text-gray-500 dark:text-gray-400">May 8</span>
+                    </div>
+                    <p class="font-mono text-sm">
+                        Minimalism isn't about removing things, it's about removing the unnecessary to highlight the essential.
+                    </p>
+                </div>
+                
+                <div class="note-card bg-white dark:bg-gray-800 rounded-lg p-5 shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="text-xs font-mono text-gray-500 dark:text-gray-400">Tech</span>
+                        <span class="text-xs font-mono text-gray-500 dark:text-gray-400">May 3</span>
+                    </div>
+                    <p class="font-mono text-sm">
+                        TailwindCSS has fundamentally changed how I approach styling. The utility-first methodology makes responsive design intuitive.
+                    </p>
+                </div>
+                
+                <div class="note-card bg-white dark:bg-gray-800 rounded-lg p-5 shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="text-xs font-mono text-gray-500 dark:text-gray-400">Design</span>
+                        <span class="text-xs font-mono text-gray-500 dark:text-gray-400">Apr 28</span>
+                    </div>
+                    <p class="font-mono text-sm">
+                        Dark mode isn't just a trend - it's about accessibility and reducing eye strain during long coding sessions.
+                    </p>
+                </div>
+                
+                <div class="note-card bg-white dark:bg-gray-800 rounded-lg p-5 shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="text-xs font-mono text-gray-500 dark:text-gray-400">Tech</span>
+                        <span class="text-xs font-mono text-gray-500 dark:text-gray-400">Apr 22</span>
+                    </div>
+                    <p class="font-mono text-sm">
+                        The JavaScript ecosystem moves fast, but fundamentals remain critical. Deep understanding of closures, prototypes, and async programming never goes out of style.
+                    </p>
+                </div>
+                
+                <div class="note-card bg-white dark:bg-gray-800 rounded-lg p-5 shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="text-xs font-mono text-gray-500 dark:text-gray-400">Design</span>
+                        <span class="text-xs font-mono text-gray-500 dark:text-gray-400">Apr 18</span>
+                    </div>
+                    <p class="font-mono text-sm">
+                        Typography sets the tone. Choosing the right typeface is as important as choosing the right color palette.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider my-12"></div>
+
+        <!-- Blog Section -->
+        <section class="fade-in">
+            <h2 class="text-2xl font-mono font-semibold mb-8">Blog</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Blog Cards -->
+                <div class="blog-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300">
+                    <div class="p-6">
+                        <h3 class="text-xl font-mono font-semibold mb-2">The Power of Simplicity in Web Design</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 font-mono">May 15, 2023 • 8 min read</p>
+                        <p class="mb-4 font-mono text-sm">
+                            Exploring how minimal design principles can improve user experience and site performance. Less really is more when it comes to modern web interfaces.
+                        </p>
+                        <a href="#" class="text-indigo-600 dark:text-indigo-400 font-mono text-sm hover:underline">Read more →</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300">
+                    <div class="p-6">
+                        <h3 class="text-xl font-mono font-semibold mb-2">CSS Grid vs Flexbox: When to Use Each</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 font-mono">Apr 30, 2023 • 10 min read</p>
+                        <p class="mb-4 font-mono text-sm">
+                            A practical guide to choosing between CSS Grid and Flexbox for different layout scenarios. Understanding their strengths leads to cleaner, more efficient CSS.
+                        </p>
+                        <a href="#" class="text-indigo-600 dark:text-indigo-400 font-mono text-sm hover:underline">Read more →</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300">
+                    <div class="p-6">
+                        <h3 class="text-xl font-mono font-semibold mb-2">Implementing Dark Mode with Pure CSS</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 font-mono">Apr 18, 2023 • 6 min read</p>
+                        <p class="mb-4 font-mono text-sm">
+                            Step-by-step guide to implementing a dark/light theme toggle using CSS variables and minimal JavaScript. Respecting system preferences while allowing user override.
+                        </p>
+                        <a href="#" class="text-indigo-600 dark:text-indigo-400 font-mono text-sm hover:underline">Read more →</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300">
+                    <div class="p-6">
+                        <h3 class="text-xl font-mono font-semibold mb-2">The Case for Vanilla JavaScript</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 font-mono">Apr 5, 2023 • 12 min read</p>
+                        <p class="mb-4 font-mono text-sm">
+                            Why modern JavaScript has reduced the need for frameworks in many projects. Exploring lightweight alternatives to heavy framework dependencies.
+                        </p>
+                        <a href="#" class="text-indigo-600 dark:text-indigo-400 font-mono text-sm hover:underline">Read more →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="font-mono text-sm text-gray-600 dark:text-gray-400">© 2023 Anish Sopariwala. All rights reserved.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+                        <i class="fab fa-twitter"></i>
+                    </a>
                 </div>
             </div>
         </div>
-        
-        <div class="card">
-            <h2>RSVP</h2>
-            <p>Please let me know if you can make it by May 25th</p>
-            <form class="rsvp-form">
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="attendance">Will you be attending?</label>
-                    <select id="attendance" required>
-                        <option value="">--Please select--</option>
-                        <option value="yes">Yes, I'll be there!</option>
-                        <option value="no">Sorry, I can't make it</option>
-                        <option value="maybe">Maybe, I'll confirm later</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="guests">Number of guests (including yourself)</label>
-                    <input type="number" id="guests" min="1" max="5" value="1">
-                </div>
-                <div class="form-group">
-                    <label for="message">Message (optional)</label>
-                    <textarea id="message" rows="3"></textarea>
-                </div>
-                <button type="submit">Submit RSVP</button>
-            </form>
-        </div>
-        
-        <div class="card">
-            <h2>Additional Information</h2>
-            <p><strong>Parking:</strong> Free parking is available on-site</p>
-            <p><strong>Food & Drinks:</strong> Dinner and refreshments will be provided</p>
-            <p><strong>Questions?</strong> Contact me at [your email] or [your phone number]</p>
-        </div>
-        
-        <footer>
-            Looking forward to celebrating with you!
-        </footer>
-    </div>
-    
+    </footer>
+
     <script>
-        // Create confetti effect
-        function createConfetti() {
-            const colors = ['#3a7bd5', '#9370DB', '#FF69B4', '#FFD700', '#00CED1'];
-            
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.classList.add('confetti');
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.width = Math.random() * 12 + 5 + 'px';
-                confetti.style.height = Math.random() * 12 + 5 + 'px';
-                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
-                confetti.style.animationDelay = Math.random() * 2 + 's';
-                document.body.appendChild(confetti);
-                
-                // Remove confetti after animation
-                setTimeout(() => {
-                    confetti.remove();
-                }, 5000);
-            }
-            
-            setTimeout(createConfetti, 3000);
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+        
+        // Check for saved theme preference or respect OS preference
+        if (localStorage.getItem('theme') === 'dark' || 
+            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlElement.classList.add('dark');
+        } else {
+            htmlElement.classList.remove('dark');
         }
         
-        // Start confetti when the page loads
-        window.addEventListener('load', createConfetti);
+        themeToggle.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            localStorage.setItem('theme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
+        });
         
-        // Form submission (prevents page reload)
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your RSVP! We look forward to celebrating with you.');
+        // Notes filtering functionality
+        const allNotesBtn = document.getElementById('all-notes');
+        const techNotesBtn = document.getElementById('tech-notes');
+        const designNotesBtn = document.getElementById('design-notes');
+        const noteCards = document.querySelectorAll('.note-card');
+        
+        function filterNotes(category) {
+            noteCards.forEach(card => {
+                const cardCategory = card.querySelector('span').textContent.toLowerCase();
+                if (category === 'all' || cardCategory === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+            
+            // Update active tab
+            allNotesBtn.classList.remove('active-tab');
+            techNotesBtn.classList.remove('active-tab');
+            designNotesBtn.classList.remove('active-tab');
+            
+            if (category === 'all') allNotesBtn.classList.add('active-tab');
+            if (category === 'tech') techNotesBtn.classList.add('active-tab');
+            if (category === 'design') designNotesBtn.classList.add('active-tab');
+        }
+        
+        allNotesBtn.addEventListener('click', () => filterNotes('all'));
+        techNotesBtn.addEventListener('click', () => filterNotes('tech'));
+        designNotesBtn.addEventListener('click', () => filterNotes('design'));
+        
+        // Animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
         });
     </script>
 </body>
